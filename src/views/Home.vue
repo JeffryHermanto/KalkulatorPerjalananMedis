@@ -27,7 +27,7 @@
                 <label class="label">Durasi</label>
               </div>
 
-              <div class="columns">
+              <div class="columns is-mobile">
                 <div class="column">
                   <div class="control has-icons-left">
                     <div class="icon is-small is-left">
