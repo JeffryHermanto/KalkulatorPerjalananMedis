@@ -17,12 +17,16 @@
                                     </div>
                                 </div>
 
+                                <div class="control">/</div>
+
                                 <div class="control">
                                     <div class="tags has-addons">
                                         <span class="tag">{{ durasiMinggu }}</span>
                                         <span class="tag is-warning">Minggu</span>
                                     </div>
                                 </div>
+
+                                <div class="control">/</div>
 
                                 <div class="control">
                                     <div class="tags has-addons">
@@ -44,7 +48,6 @@ import { mapGetters } from 'vuex';
 
 export default {
     name: 'Kalkulator',
-    props: ['nama'],
     computed: mapGetters([
       'nama',
       'tanggalBerangkat',

@@ -4,14 +4,15 @@
       <div class="container">
         <div class="columns is-centered">
           <div class="column is-6-tablet is-5-desktop is-5-widescreen">
-            <form class="box">
+            <form class="box" @submit.prevent>
 
               <div class="field has-text-centered">
-                <img src="../assets/logo.png" width="120">
+                <img src="../assets/logo.png" width="100">
               </div>
 
-              <h1 class="is-size-4 has-text-centered has-text-weight-bold	">kemodijakarta.com</h1><br />
-              <p class="is-size-6 has-text-centered">Silahkan isi data perjalanan Anda</p><hr />
+              <h1 class="is-size-5 has-text-centered has-text-weight-bold	">kemodijakarta.com</h1><br />
+              <p class="is-size-6 has-text-centered instruksi">Silahkan isi data perjalanan Anda</p>
+              <hr />
 
               <div class="field">
                 <label class="label">Nama</label>
@@ -45,7 +46,12 @@
 
               <div class="break2"></div>
 
-              <button type="submit" class="button is-medium is-success is-fullwidth" @click="hitungDurasi()">
+              <div class="notification is-danger" v-if="peringatan">
+                <button class="delete" @click="clearWarning"></button>
+                {{ pesan }}
+              </div>
+
+              <button type="submit" class="button is-medium is-success is-fullwidth" @click="masuk">
                 <i class="fas fa-sign-in-alt"></i> &nbsp;&nbsp;Masuk
               </button>
 
@@ -67,11 +73,13 @@ export default {
       nama: null,
       tanggalSekarang: moment(Date.now()).format('YYYY-MM-DD'),
       tanggalBerangkat: null,
-      tanggalPulang: null
+      tanggalPulang: null,
+      pesan: null,
+      peringatan: false
     }
   },
   methods: {
-    hitungDurasi() {
+    masuk() {
       this.$store.state.nama = this.nama;
       this.$store.state.tanggalBerangkat = this.tanggalBerangkat;
       this.$store.state.tanggalPulang = this.tanggalPulang;
@@ -81,15 +89,24 @@ export default {
       this.$store.state.durasiHari = tglPulang.diff(tglBerangkat, 'days')
       this.$store.state.durasiMinggu = tglPulang.diff(tglBerangkat, 'weeks')
       this.$store.state.durasiBulan = tglPulang.diff(tglBerangkat, 'months')
-    
-      this.$router.push({
-        name: 'kalkulator',
-        params: {
-          nama: this.nama,
-          tanggalBerangkat: this.tanggalBerangkat,
-          tanggalPulang: this.tanggalPulang
-        }
-      })
+
+      if (this.$store.state.durasiHari < 0) {
+        this.pesan = 'Tanggal pulang harus setelah tanggal berangkat.';
+        this.peringatan = true;
+      } else {
+        this.$router.push({
+          name: 'kalkulator',
+          params: {
+            nama: this.nama,
+            tanggalBerangkat: this.tanggalBerangkat,
+            tanggalPulang: this.tanggalPulang
+          }
+        })
+      }
+    },
+    clearWarning() {
+      this.peringatan = false;
+      this.pesan = null;
     }
   }
 };
@@ -101,5 +118,9 @@ export default {
 }
 .break2 {
   margin: 18px;
+}
+.instruksi {
+  margin-top: -3px;
+  margin-bottom: -15px;
 }
 </style>
