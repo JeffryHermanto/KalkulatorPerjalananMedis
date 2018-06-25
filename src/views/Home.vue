@@ -10,10 +10,8 @@
                 <img src="../assets/logo.png" width="160">
               </div>
 
-              <h1 class="is-size-4 has-text-centered has-text-weight-bold	">kemodijakarta.com</h1>
-              <br />
-              <p class="is-size-5 has-text-centered">Silahkan isi data perjalanan Anda</p>
-              <hr />
+              <h1 class="is-size-4 has-text-centered has-text-weight-bold	">kemodijakarta.com</h1><br />
+              <p class="is-size-6 has-text-centered">Silahkan isi data perjalanan Anda</p><hr />
 
               <div class="field">
                 <label class="label">Nama</label>
@@ -31,47 +29,57 @@
 
               <div class="columns">
                 <div class="column">
-                  <div class="select is-fullwidth">
-                    <select>
-                      <option>Datang...</option>
-                      <option>Januari</option>
-                      <option>Februari</option>
-                      <option>Maret</option>
-                      <option>April</option>
-                      <option>Mei</option>
-                      <option>Juni</option>
-                      <option>Juli</option>
-                      <option>Agustus</option>
-                      <option>September</option>
-                      <option>Oktober</option>
-                      <option>November</option>
-                      <option>Desember</option>
-                    </select>
+                  <div class="control has-icons-left">
+                    <div class="icon is-small is-left">
+                      <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="select is-fullwidth">
+                      <select>
+                        <option selected>Datang...</option>
+                        <option>Januari</option>
+                        <option>Februari</option>
+                        <option>Maret</option>
+                        <option>April</option>
+                        <option>Mei</option>
+                        <option>Juni</option>
+                        <option>Juli</option>
+                        <option>Agustus</option>
+                        <option>September</option>
+                        <option>Oktober</option>
+                        <option>November</option>
+                        <option>Desember</option>
+                      </select>
+                    </div>
                   </div>
                 </div>
                 <div class="column">
-                  <div class="select is-fullwidth">
-                    <select>
-                      <option>Pulang...</option>
-                      <option>Januari</option>
-                      <option>Februari</option>
-                      <option>Maret</option>
-                      <option>April</option>
-                      <option>Mei</option>
-                      <option>Juni</option>
-                      <option>Juli</option>
-                      <option>Agustus</option>
-                      <option>September</option>
-                      <option>Oktober</option>
-                      <option>November</option>
-                      <option>Desember</option>
-                    </select>
+                  <div class="control has-icons-left">
+                    <div class="icon is-small is-left">
+                      <i class="far fa-calendar-alt"></i>
+                    </div>
+                    <div class="select is-fullwidth">
+                      <select>
+                        <option selected>Pulang...</option>
+                        <option>Januari</option>
+                        <option>Februari</option>
+                        <option>Maret</option>
+                        <option>April</option>
+                        <option>Mei</option>
+                        <option>Juni</option>
+                        <option>Juli</option>
+                        <option>Agustus</option>
+                        <option>September</option>
+                        <option>Oktober</option>
+                        <option>November</option>
+                        <option>Desember</option>
+                      </select>
+                    </div>
                   </div>
                 </div>
               </div>
 
               <button type="submit" class="button is-success is-fullwidth">
-                <i class="fa fa-sign-in"></i> &nbsp;Masuk
+                <i class="fas fa-sign-in-alt"></i> &nbsp;&nbsp;Masuk
               </button>
 
             </form>
