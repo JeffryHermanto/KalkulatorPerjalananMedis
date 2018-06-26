@@ -11,7 +11,7 @@
               </div>
 
               <h1 class="is-size-5 has-text-centered has-text-weight-bold	">kemodijakarta.com</h1><br />
-              <p class="is-size-6 has-text-centered instruksi">Silahkan isi data perjalanan Anda</p>
+              <p class="is-size-5 has-text-centered instruksi">Kalkulator Perjalanan Medis</p>
               <hr />
 
               <div class="field">
