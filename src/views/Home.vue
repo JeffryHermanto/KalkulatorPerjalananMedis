@@ -67,7 +67,7 @@
 import moment from 'moment';
 
 export default {
-  name: "home",
+  name: 'home',
   data() {
     return {
       nama: null,
@@ -76,7 +76,7 @@ export default {
       tanggalPulang: null,
       pesan: null,
       peringatan: false
-    }
+    };
   },
   methods: {
     masuk() {
@@ -86,12 +86,15 @@ export default {
 
       let tglBerangkat = moment(this.tanggalBerangkat);
       let tglPulang = moment(this.tanggalPulang);
-      this.$store.state.durasiHari = tglPulang.diff(tglBerangkat, 'days')
-      this.$store.state.durasiMinggu = tglPulang.diff(tglBerangkat, 'weeks')
-      this.$store.state.durasiBulan = tglPulang.diff(tglBerangkat, 'months')
+      this.$store.state.durasiHari = tglPulang.diff(tglBerangkat, 'days');
+      this.$store.state.durasiMinggu = tglPulang.diff(tglBerangkat, 'weeks');
+      this.$store.state.durasiBulan = tglPulang.diff(tglBerangkat, 'months');
 
-      if (this.$store.state.durasiHari < 0) {
-        this.pesan = 'Tanggal pulang harus setelah tanggal berangkat.';
+      if (
+        this.$store.state.durasiHari < 0 ||
+        this.tanggalSekarang > this.tanggalBerangkat
+      ) {
+        this.pesan = 'Input tanggal tidak valid.';
         this.peringatan = true;
       } else {
         this.$router.push({
@@ -101,7 +104,7 @@ export default {
             tanggalBerangkat: this.tanggalBerangkat,
             tanggalPulang: this.tanggalPulang
           }
-        })
+        });
       }
     },
     clearWarning() {
