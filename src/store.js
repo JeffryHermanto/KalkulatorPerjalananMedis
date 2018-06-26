@@ -10,7 +10,9 @@ export default new Vuex.Store({
     tanggalPulang: null,
     durasiHari: null,
     durasiMinggu: null,
-    durasiBulan: null
+    durasiBulan: null,
+    collections: [],
+    grandSummary: null
   },
   getters: {
     nama: state => {
@@ -30,6 +32,23 @@ export default new Vuex.Store({
     },
     durasiBulan: state => {
       return state.durasiBulan
+    },
+    collections: state => {
+      return state.collections
+    },
+    grandSummary: state => {
+      return state.collections.reduce((sum, current) => {
+        function jumlahkan(current) {
+          let jumlah = 0;
+          for (let el in current) {
+            if (current.hasOwnProperty(el)) {
+              jumlah += parseFloat(current[el]);
+            }
+          }
+          return jumlah;
+        }
+        return sum + jumlahkan(current);
+      }, 0);
     }
   },
   mutations: {
