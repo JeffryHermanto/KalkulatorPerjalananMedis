@@ -11,6 +11,8 @@ export default new Vuex.Store({
     durasiHari: null,
     durasiMinggu: null,
     durasiBulan: null,
+    siklusForm: null,
+    hitungSiklusForm: 1,
     collections: [],
     grandSummary: null
   },
@@ -32,6 +34,17 @@ export default new Vuex.Store({
     },
     durasiBulan: state => {
       return state.durasiBulan
+    },
+    siklusForm: state => {
+      if (state.durasiBulan)
+        return state.durasiBulan;
+      if (state.durasiMinggu)
+        return state.durasiMinggu;
+      if (state.durasiHari)
+        return state.durasiHari;
+    },
+    hitungSiklusForm: state => {
+      return state.hitungSiklusForm
     },
     collections: state => {
       return state.collections

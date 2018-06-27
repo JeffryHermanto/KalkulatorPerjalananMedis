@@ -145,29 +145,36 @@ export default {
         return;
       }
 
-      this.$store.state.collections.push({
-        konsultasi: this.konsultasi,
-        tindakan: this.tindakan,
-        obat: this.obat,
-        ruangan: this.ruangan,
-        tiketPesawat: this.tiketPesawat,
-        akomodasi: this.akomodasi,
-        transport: this.transport,
-        catering: this.catering,
-        konseling: this.konseling,
-        personalAssistant: this.personalAssistant
-      });
+      const answer = window.confirm(
+        'Apakah data Anda sudah benar?\nPeriksa kembali sebelum ke isian berikutnya.'
+      );
+      if (answer) {
+        this.$store.state.collections.push({
+          konsultasi: this.konsultasi,
+          tindakan: this.tindakan,
+          obat: this.obat,
+          ruangan: this.ruangan,
+          tiketPesawat: this.tiketPesawat,
+          akomodasi: this.akomodasi,
+          transport: this.transport,
+          catering: this.catering,
+          konseling: this.konseling,
+          personalAssistant: this.personalAssistant
+        });
 
-      this.konsultasi = null;
-      this.tindakan = null;
-      this.obat = null;
-      this.ruangan = null;
-      this.tiketPesawat = null;
-      this.akomodasi = null;
-      this.transport = null;
-      this.catering = null;
-      this.konseling = null;
-      this.personalAssistant = null;
+        this.$store.state.hitungSiklusForm++;
+
+        this.konsultasi = null;
+        this.tindakan = null;
+        this.obat = null;
+        this.ruangan = null;
+        this.tiketPesawat = null;
+        this.akomodasi = null;
+        this.transport = null;
+        this.catering = null;
+        this.konseling = null;
+        this.personalAssistant = null;
+      }
     },
     clearWarning() {
       this.peringatan = false;

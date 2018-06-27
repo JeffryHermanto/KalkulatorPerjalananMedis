@@ -27,6 +27,18 @@
   <meta name="msapplication-TileImage" content="./favicon/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
 
+  <!-- RELOAD GUARD -->
+  <script>
+    history.pushState(null, null, location.href);
+    window.onpopstate = function() {
+      window.alert('Jangan tekan tombol back sebelum selesai.')
+      // history.go(1);
+    };
+    window.onbeforeunload = function() {
+      return "Data isian Anda akan hilang.";
+    };
+  </script>
+
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-121446126-1"></script>
   <script>
