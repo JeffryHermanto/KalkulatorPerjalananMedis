@@ -59,7 +59,7 @@
                 </div>
                 <div class="break1"></div>
                 <blockquote>
-                  <p class="is-size-5">Rp. {{ formatPrice(jumlahkan(collection)) }},-</p>
+                  <p>Rp. {{ formatPrice(jumlahkan(collection)) }},-</p>
                 </blockquote>
               </div>
             </div>
@@ -70,7 +70,7 @@
 
         <br />
 
-        <article class="message is-primary">
+        <article class="message is-primary has-text-centered">
           <div class="message-header">
             <p>Total Budget Perjalanan Medis</p>
           </div>
@@ -83,7 +83,7 @@
 
       </section>
       <footer class="modal-card-foot">
-        <button class="button is-success is-fullwidth">Simpan PDF</button>
+        <button class="button is-medium is-success is-fullwidth">Simpan PDF</button>
       </footer>
     </div>
   </div>
@@ -190,5 +190,11 @@ export default {
 <style>
 .break1 {
   margin-bottom: -10px;
+}
+blockquote p {
+  margin-top: -10px;
+  margin-bottom: -10px;
+  margin-left: -10px;
+  font-size: 1.15em;
 }
 </style>

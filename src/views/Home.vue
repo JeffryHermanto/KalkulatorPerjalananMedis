@@ -91,7 +91,7 @@ export default {
       this.$store.state.durasiBulan = tglPulang.diff(tglBerangkat, 'months');
 
       if (
-        this.$store.state.durasiHari < 0 ||
+        this.$store.state.durasiHari <= 0 ||
         this.tanggalSekarang > this.tanggalBerangkat
       ) {
         this.pesan = 'Input tanggal tidak valid.';

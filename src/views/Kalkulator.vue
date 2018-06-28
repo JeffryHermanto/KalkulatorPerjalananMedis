@@ -9,7 +9,7 @@
               <progress class="progress is-large is-primary show-value" :value="hitungSiklusForm" :max="siklusForm" v-if="hitungSiklusForm <= siklusForm">100%</progress>
               <div class="break"></div>
               <Form v-if="hitungSiklusForm <= siklusForm" />
-              <PreviewTotal v-if="hitungSiklusForm <= siklusForm" />
+              <PreviewTotal v-if="(hitungSiklusForm > 1) && (hitungSiklusForm <= siklusForm)" />
               <Summary v-if="hitungSiklusForm > siklusForm" />
             </form>
           </div>

@@ -29,11 +29,12 @@
 
   <!-- RELOAD GUARD -->
   <script>
-    history.pushState(null, null, location.href);
+    // history.pushState(null, null, location.href);
     window.onpopstate = function() {
-      window.alert('Jangan tekan tombol back sebelum selesai.')
-      // history.go(1);
+      window.alert('Jangan tekan tombol back sebelum selesai.\nSilahkan reload untuk memulai lagi.')
+      history.go(0);
     };
+
     window.onbeforeunload = function() {
       return "Data isian Anda akan hilang.";
     };
