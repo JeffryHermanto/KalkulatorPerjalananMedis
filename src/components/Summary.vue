@@ -9,13 +9,11 @@
         </button>
       </header>
       <section class="modal-card-body">
-
         <div class="box">
           <h1 class="is-title is-size-4 has-text-centered">
             <strong>{{ nama }}</strong>
           </h1>
         </div>
-
         <div class="field is-grouped is-grouped-multiline">
           <div class="control">
             <div class="tags has-addons">
@@ -24,14 +22,12 @@
                 <strong>{{ durasi.durasi }}</strong>&nbsp;{{ durasi.satuan }}</span>
             </div>
           </div>
-
           <div class="control">
             <div class="tags has-addons">
               <span class="tag is-dark">Berangkat</span>
               <span class="tag is-light">{{ formatTanggalBerangkat }}</span>
             </div>
           </div>
-
           <div class="control">
             <div class="tags has-addons">
               <span class="tag is-dark">Kembali</span>
@@ -39,51 +35,236 @@
             </div>
           </div>
         </div>
-
         <br/>
 
         <!-- DATA -->
-        <div v-for="(collection, index) in newCollections" :key="index">
-          <article class="media">
-            <div class="media-left">
-              <h1 class="is-size-4">
-                <strong>{{ index + 1 }}</strong>
-              </h1>
-            </div>
-            <div class="media-content">
-              <div class="content">
-                <div v-for="(prop, index) in collection" :key="index">
-                  <p>{{ index }}
-                    <strong>Rp. {{ formatPrice(prop) }},-</strong>
-                  </p>
-                </div>
-                <div class="break1"></div>
-                <blockquote>
-                  <p>Rp. {{ formatPrice(jumlahkan(collection)) }},-</p>
-                </blockquote>
-              </div>
-            </div>
-          </article>
-          <hr/>
+        <div class="tableWrapper">
+          <div class="lebarKonten">
+            <table class="table is-fullwidth">
+              <thead>
+                <tr>
+                  <th>Kategori</th>
+                  <th>Biaya</th>
+                  <th v-for="(collection, index) in collections" :key="index">
+                    {{ durasi.satuan }} {{ index + 1 }}
+                  </th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td :rowspan="rowSpanMedis" style="vertical-align: middle; text-align: left">
+                    <strong>Rumah Sakit<br/>Kanker</strong>
+                  </td>
+                  <td>
+                    <span @click="toggleIsMedis" v-show="!isMedis">
+                      <i class="fas fa-angle-right"></i>
+                    </span>
+                    <span @click="toggleIsMedis" v-show="isMedis">
+                      <i class="fas fa-angle-down"></i>
+                    </span>
+                    <em>&nbsp;Medis</em>
+                  </td>
+                  <td class="money" v-for="(collection, index) in collections" :key="index">
+                    <em>
+                      <div class="currencySymbol">Rp.&nbsp;</div>
+                      {{ formatPrice(jumlahkanMedis(collection)) }},-
+                    </em>
+                  </td>
+                  <td class="money">
+                    <em>
+                      <div class="currencySymbol">Rp.&nbsp;</div>
+                      {{ formatPrice(sumByPropsObj[0].sum + sumByPropsObj[1].sum + sumByPropsObj[2].sum + sumByPropsObj[3].sum) }},-
+                    </em>
+                  </td>
+                </tr>
+
+                <tr v-if="isMedis">
+                  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Konsultasi</td>
+                  <td class="money" v-for="(collection, index) in collections" :key="index">
+                    <div class="currencySymbol">Rp.&nbsp;</div>
+                    {{ formatPrice(collection.konsultasi) }},-
+                  </td>
+                  <td class="money">
+                    <div class="currencySymbol">Rp.&nbsp;</div>
+                    {{ formatPrice(sumByPropsObj[0].sum) }},-
+                  </td>
+                </tr>
+
+                <tr v-if="isMedis">
+                  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tindakan</td>
+                  <td class="money" v-for="(collection, index) in collections" :key="index">
+                    <div class="currencySymbol">Rp.&nbsp;</div>
+                    {{ formatPrice(collection.tindakan) }},-
+                  </td>
+                  <td class="money">
+                    <div class="currencySymbol">Rp.&nbsp;</div>
+                    {{ formatPrice(sumByPropsObj[1].sum) }},-
+                  </td>
+                </tr>
+
+                <tr v-if="isMedis">
+                  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Obat</td>
+                  <td class="money" v-for="(collection, index) in collections" :key="index">
+                    <div class="currencySymbol">Rp.&nbsp;</div>
+                    {{ formatPrice(collection.obat) }},-
+                  </td>
+                  <td class="money">
+                    <div class="currencySymbol">Rp.&nbsp;</div>
+                    {{ formatPrice(sumByPropsObj[2].sum) }},-
+                  </td>
+                </tr>
+
+                <tr v-if="isMedis">
+                  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ruangan</td>
+                  <td class="money" v-for="(collection, index) in collections" :key="index">
+                    <div class="currencySymbol">Rp.&nbsp;</div>
+                    {{ formatPrice(collection.ruangan) }},-
+                  </td>
+                  <td class="money">
+                    <div class="currencySymbol">Rp.&nbsp;</div>
+                    {{ formatPrice(sumByPropsObj[3].sum) }},-
+                  </td>
+                </tr>
+
+                <tr>
+                  <td :rowspan="rowSpanLainLain" style="vertical-align: middle; text-align: left">
+                    <strong>Advisory by<br />Kemodijakarta</strong>
+                  </td>
+                  <td>Tiket Pesawat</td>
+                  <td class="money" v-for="(collection, index) in collections" :key="index">
+                    <div class="currencySymbol">Rp.&nbsp;</div>
+                    {{ formatPrice(collection.tiketPesawat) }},-
+                  </td>
+                  <td class="money">
+                    <div class="currencySymbol">Rp.&nbsp;</div>
+                    {{ formatPrice(sumByPropsObj[4].sum) }},-
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>Akomodasi</td>
+                  <td class="money" v-for="(collection, index) in collections" :key="index">
+                    <div class="currencySymbol">Rp.&nbsp;</div>
+                    {{ formatPrice(collection.akomodasi) }},-
+                  </td>
+                  <td class="money">
+                    <div class="currencySymbol">Rp.&nbsp;</div>
+                    {{ formatPrice(sumByPropsObj[5].sum) }},-
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>Transport</td>
+                  <td class="money" v-for="(collection, index) in collections" :key="index">
+                    <div class="currencySymbol">Rp.&nbsp;</div>
+                    {{ formatPrice(collection.transport) }},-
+                  </td>
+                  <td class="money">
+                    <div class="currencySymbol">Rp.&nbsp;</div>
+                    {{ formatPrice(sumByPropsObj[6].sum) }},-
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>Catering</td>
+                  <td class="money" v-for="(collection, index) in collections" :key="index">
+                    <div class="currencySymbol">Rp.&nbsp;</div>
+                    {{ formatPrice(collection.catering) }},-
+                  </td>
+                  <td class="money">
+                    <div class="currencySymbol">Rp.&nbsp;</div>
+                    {{ formatPrice(sumByPropsObj[7].sum) }},-
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <span @click="toggleIsLainLain" v-show="!isLainLain">
+                      <i class="fas fa-angle-right"></i>
+                    </span>
+                    <span @click="toggleIsLainLain" v-show="isLainLain">
+                      <i class="fas fa-angle-down"></i>
+                    </span>
+                    <em>&nbsp;Lain-lain</em>
+                  </td>
+
+                  <td class="money" v-for="(collection, index) in collections" :key="index">
+                    <em>
+                      <div class="currencySymbol">Rp.&nbsp;</div>
+                      {{ formatPrice(jumlahkanLainLain(collection)) }},-
+                    </em>
+                  </td>
+                  <td class="money">
+                    <em>
+                      <div class="currencySymbol">Rp.&nbsp;</div>
+                      {{ formatPrice(sumByPropsObj[8].sum + sumByPropsObj[9].sum) }},-
+                    </em>
+                  </td>
+                </tr>
+
+                <tr v-if="isLainLain">
+                  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Konseling</td>
+                  <td class="money" v-for="(collection, index) in collections" :key="index">
+                    <div class="currencySymbol">Rp.&nbsp;</div>
+                    {{ formatPrice(collection.konseling) }},-
+                  </td>
+                  <td class="money">
+                    <div class="currencySymbol">Rp.&nbsp;</div>
+                    {{ formatPrice(sumByPropsObj[8].sum) }},-
+                  </td>
+                </tr>
+
+                <tr v-if="isLainLain">
+                  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Personal Assistant</td>
+                  <td class="money" v-for="(collection, index) in collections" :key="index">
+                    <div class="currencySymbol">Rp.&nbsp;</div>
+                    {{ formatPrice(collection.personalAssistant) }},-
+                  </td>
+                  <td class="money">
+                    <div class="currencySymbol">Rp.&nbsp;</div>
+                    {{ formatPrice(sumByPropsObj[9].sum) }},-
+                  </td>
+                </tr>
+
+                <tr>
+                  <td></td>
+                  <th>Total</th>
+                  <td class="money" v-for="(collection, index) in collections" :key="index">
+                    <strong>
+                      <div class="currencySymbol">Rp.&nbsp;</div>
+                      {{ formatPrice(jumlahkan(collection)) }},-
+                    </strong>
+                  </td>
+                  <td class="money">
+                    <strong>
+                      <div class="currencySymbol">Rp.&nbsp;</div>
+                      {{ formatPrice(grandSummary) }}
+                    </strong>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
         <!-- END OF DATA -->
 
-        <br />
+        <br /><br />
 
-        <article class="message is-primary has-text-centered">
-          <div class="message-header">
+        <article class="message is-primary has-text-centered ">
+          <div class="message-header ">
             <p>Total Budget Perjalanan Medis</p>
           </div>
-          <div class="message-body">
-            <p class="is-subtitle is-size-4">
-              <strong>Rp. {{ formatPrice(grandSummary) }},-</strong>
+          <div class="message-body ">
+            <p class="is-subtitle is-size-4 ">
+              <strong>Rp.&nbsp; {{ formatPrice(grandSummary) }},-</strong>
             </p>
           </div>
         </article>
 
       </section>
-      <footer class="modal-card-foot">
-        <button class="button is-medium is-success is-fullwidth">Simpan PDF</button>
+      <footer class="modal-card-foot ">
+        <button class="button is-medium is-success is-fullwidth ">Simpan PDF</button>
       </footer>
     </div>
   </div>
@@ -92,7 +273,6 @@
 <script>
 import { mapGetters } from 'vuex';
 import moment from 'moment';
-import objectRenameKeys from 'object-rename-keys';
 
 export default {
   name: 'Summary',
@@ -105,7 +285,8 @@ export default {
       'durasiMinggu',
       'durasiBulan',
       'collections',
-      'grandSummary'
+      'grandSummary',
+      'sumByPropsObj'
     ]),
     formatTanggalBerangkat() {
       return moment(this.tanggalBerangkat).format('DD MMM YYYY');
@@ -132,23 +313,6 @@ export default {
           satuan: 'Hari',
           warna: 'tag is-success'
         };
-    },
-    newCollections() {
-      let changes = {
-        konsultasi: 'Konsultasi:',
-        tindakan: 'Tindakan:',
-        obat: 'Obat:',
-        ruangan: 'Ruangan:',
-        tiketPesawat: 'Tiket Pesawat:',
-        akomodasi: 'Akomodasi:',
-        transport: 'Transport:',
-        catering: 'Catering:',
-        konseling: 'Konseling:',
-        personalAssistant: 'Personal Assistant:'
-      };
-
-      let result = objectRenameKeys(this.collections, changes);
-      return result;
     }
   },
   methods: {
@@ -182,7 +346,42 @@ export default {
         }
       }
       return jumlah;
+    },
+    jumlahkanMedis(current) {
+      let jumlah = 0;
+      jumlah =
+        current.konsultasi + current.tindakan + current.obat + current.ruangan;
+      return jumlah;
+    },
+    jumlahkanLainLain(current) {
+      let jumlah = 0;
+      jumlah = current.konseling + current.personalAssistant;
+      return jumlah;
+    },
+    toggleIsMedis() {
+      this.isMedis = !this.isMedis;
+      if (this.isMedis) {
+        this.rowSpanMedis = 5;
+      } else {
+        this.rowSpanMedis = 1;
+      }
+    },
+    toggleIsLainLain() {
+      this.isLainLain = !this.isLainLain;
+      if (this.isLainLain) {
+        this.rowSpanLainLain = 7;
+      } else {
+        this.rowSpanLainLain = 5;
+      }
     }
+  },
+  data() {
+    return {
+      isMedis: false,
+      rowSpanMedis: 1,
+      isLainLain: false,
+      rowSpanLainLain: 5
+    };
   }
 };
 </script>
@@ -196,5 +395,21 @@ blockquote p {
   margin-bottom: -10px;
   margin-left: -10px;
   font-size: 1.15em;
+}
+.tableWrapper {
+  overflow-x: auto;
+}
+.lebarKonten {
+  width: max-content;
+}
+td.money {
+  text-align: right;
+}
+.currencySymbol {
+  float: left;
+}
+span:hover {
+  color: blue;
+  cursor: pointer;
 }
 </style>
