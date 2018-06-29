@@ -59,7 +59,7 @@ export default {
           satuan: 'Bulan',
           warna: 'tag is-link'
         };
-      if (this.durasiMinggu)
+      if (this.durasiMinggu && this.durasiHari > 7)
         return {
           durasi: this.durasiMinggu,
           satuan: 'Minggu',
