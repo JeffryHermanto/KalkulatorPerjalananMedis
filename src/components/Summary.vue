@@ -65,18 +65,20 @@
                     </span>
                     <em>&nbsp;Medis</em>
                   </td>
-                  <td class="money" v-for="(collection, index) in collections" :key="index">
+                  <td v-show="isMedis === false" class="money" v-for="(collection, index) in collections" :key="index">
                     <em>
                       <div class="currencySymbol">Rp.&nbsp;</div>
                       {{ formatPrice(jumlahkanMedis(collection)) }},-
                     </em>
                   </td>
-                  <td class="money">
+                  <td v-show="isMedis" class="money" v-for="(collection, index) in collections" :key="index"></td>
+                  <td v-show="isMedis === false" class="money">
                     <em>
                       <div class="currencySymbol">Rp.&nbsp;</div>
                       {{ formatPrice(sumByPropsObj[0].sum + sumByPropsObj[1].sum + sumByPropsObj[2].sum + sumByPropsObj[3].sum) }},-
                     </em>
                   </td>
+                  <td v-show="isMedis"></td>
                 </tr>
 
                 <tr v-if="isMedis">
@@ -189,18 +191,20 @@
                     <em>&nbsp;Lain-lain</em>
                   </td>
 
-                  <td class="money" v-for="(collection, index) in collections" :key="index">
+                  <td v-show="isLainLain === false" class="money" v-for="(collection, index) in collections" :key="index">
                     <em>
                       <div class="currencySymbol">Rp.&nbsp;</div>
                       {{ formatPrice(jumlahkanLainLain(collection)) }},-
                     </em>
                   </td>
-                  <td class="money">
+                  <td v-show="isLainLain" class="money" v-for="(collection, index) in collections" :key="index"></td>
+                  <td v-show="isLainLain === false" class="money">
                     <em>
                       <div class="currencySymbol">Rp.&nbsp;</div>
                       {{ formatPrice(sumByPropsObj[8].sum + sumByPropsObj[9].sum) }},-
                     </em>
                   </td>
+                  <td v-show="isLainLain"></td>
                 </tr>
 
                 <tr v-if="isLainLain">
