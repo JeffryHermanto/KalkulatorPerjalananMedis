@@ -150,16 +150,16 @@ export default {
       );
       if (answer) {
         this.$store.state.collections.push({
-          konsultasi: this.konsultasi,
-          tindakan: this.tindakan,
-          obat: this.obat,
-          ruangan: this.ruangan,
-          tiketPesawat: this.tiketPesawat,
-          akomodasi: this.akomodasi,
-          transport: this.transport,
-          catering: this.catering,
-          konseling: this.konseling,
-          personalAssistant: this.personalAssistant
+          konsultasi: parseInt(this.konsultasi) || 0,
+          tindakan: parseInt(this.tindakan) || 0,
+          obat: parseInt(this.obat) || 0,
+          ruangan: parseInt(this.ruangan) || 0,
+          tiketPesawat: parseInt(this.tiketPesawat) || 0,
+          akomodasi: parseInt(this.akomodasi) || 0,
+          transport: parseInt(this.transport) || 0,
+          catering: parseInt(this.catering) || 0,
+          konseling: parseInt(this.konseling) || 0,
+          personalAssistant: parseInt(this.personalAssistant) || 0
         });
 
         this.$store.state.hitungSiklusForm++;
