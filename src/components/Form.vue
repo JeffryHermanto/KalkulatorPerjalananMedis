@@ -40,8 +40,13 @@
     <br />
 
     <!-- ADVISORY BY KEMODIJAKARTA -->
+    <button v-show="!isAdvis" class="button is-warning" @click="advis">Advisory by Kemodijakarta</button>
+    <button v-show="isAdvis" class="button is-primary" @click="advis">Advisory by Kemodijakarta</button>
+    <br /><br />
+
+    <!-- SELF FILL -->
     <label class="label">
-      <i class="fas fa-bed"></i> &nbsp;Advisory by Kemodijakarta
+      <i class="fas fa-bed"></i> &nbsp;Budget Trip
     </label>
     <div class="field has-addons">
       <p class="control">
@@ -108,8 +113,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'Form',
+  computed: {
+    ...mapGetters(['satuanDurasi'])
+  },
   data() {
     return {
       konsultasi: null,
@@ -123,7 +133,8 @@ export default {
       konseling: null,
       personalAssistant: null,
       peringatan: false,
-      pesan: null
+      pesan: null,
+      isAdvis: false
     };
   },
   methods: {
@@ -179,6 +190,38 @@ export default {
     clearWarning() {
       this.peringatan = false;
       this.pesan = null;
+    },
+    advis() {
+      this.isAdvis = !this.isAdvis;
+      if (this.isAdvis && this.satuanDurasi === 'Bulan') {
+        this.tiketPesawat = 3000000;
+        this.akomodasi = 4000000;
+        this.transport = 500000;
+        this.catering = 3000000;
+        this.konseling = 500000;
+        this.personalAssistant = 500000;
+      } else if (this.isAdvis && this.satuanDurasi === 'Minggu') {
+        this.tiketPesawat = 3000000 / 4;
+        this.akomodasi = 4000000 / 4;
+        this.transport = 500000 / 4;
+        this.catering = 3000000 / 4;
+        this.konseling = 500000 / 4;
+        this.personalAssistant = 500000 / 4;
+      } else if (this.isAdvis && this.satuanDurasi === 'Hari') {
+        this.tiketPesawat = 100000;
+        this.akomodasi = 135000;
+        this.transport = 17000;
+        this.catering = 100000;
+        this.konseling = 17000;
+        this.personalAssistant = 17000;
+      } else if (this.isAdvis === false) {
+        this.tiketPesawat = null;
+        this.akomodasi = null;
+        this.transport = null;
+        this.catering = null;
+        this.konseling = null;
+        this.personalAssistant = null;
+      }
     }
   }
 };

@@ -54,7 +54,7 @@
               <tbody>
                 <tr>
                   <td :rowspan="rowSpanMedis" style="vertical-align: middle; text-align: left">
-                    <strong>Rumah Sakit<br/>Kanker</strong>
+                    <strong>RS<br/>Kanker</strong>
                   </td>
                   <td>
                     <span @click="toggleIsMedis" v-show="!isMedis">
@@ -63,7 +63,7 @@
                     <span @click="toggleIsMedis" v-show="isMedis">
                       <i class="fas fa-angle-down"></i>
                     </span>
-                    <em>&nbsp;Medis</em>
+                    <em @click="toggleIsMedis">&nbsp;Medis</em>
                   </td>
                   <td v-show="isMedis === false" class="money" v-for="(collection, index) in collections" :key="index">
                     <em>
@@ -131,7 +131,7 @@
 
                 <tr>
                   <td :rowspan="rowSpanLainLain" style="vertical-align: middle; text-align: left">
-                    <strong>Advisory by<br />Kemodijakarta</strong>
+                    <strong>Budget<br />Trip</strong>
                   </td>
                   <td>Tiket Pesawat</td>
                   <td class="money" v-for="(collection, index) in collections" :key="index">
@@ -188,7 +188,7 @@
                     <span @click="toggleIsLainLain" v-show="isLainLain">
                       <i class="fas fa-angle-down"></i>
                     </span>
-                    <em>&nbsp;Lain-lain</em>
+                    <em @click="toggleIsLainLain">&nbsp;Lain-lain</em>
                   </td>
 
                   <td v-show="isLainLain === false" class="money" v-for="(collection, index) in collections" :key="index">

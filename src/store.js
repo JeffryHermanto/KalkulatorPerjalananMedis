@@ -13,6 +13,7 @@ export default new Vuex.Store({
     durasiBulan: null,
     siklusForm: null,
     hitungSiklusForm: 1,
+    satuanDurasi: null,
     collections: [],
     grandSummary: null,
     sumByPropsObj: null,
@@ -46,6 +47,14 @@ export default new Vuex.Store({
     },
     hitungSiklusForm: state => {
       return state.hitungSiklusForm
+    },
+    satuanDurasi: state => {
+      if (state.durasiBulan)
+        return state.satuanDurasi = 'Bulan'
+      if (state.durasiMinggu && state.durasiHari > 7)
+        return state.satuanDurasi = 'Minggu'
+      if (state.durasiHari || state.durasiHari === 0)
+        return state.satuanDurasi = 'Hari'
     },
     collections: state => {
       return state.collections
