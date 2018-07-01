@@ -104,10 +104,6 @@
     <!-- /////////////////////////////////////////////////////////////////////////////// -->
 
     <!-- TOMBOL BERIKUTNYA -->
-    <div class="notification is-danger" v-if="peringatan">
-      <button class="delete" @click="clearWarning"></button>
-      {{ pesan }}
-    </div>
     <button type="submit" class="button is-medium is-success is-fullwidth" @click="postData">
       Berikutnya&nbsp;&nbsp;
       <i class="fas fa-chevron-right"></i>
@@ -139,8 +135,6 @@ export default {
       transport: null,
       konseling: null,
       personalAssistant: null,
-      peringatan: false,
-      pesan: null,
       isTotalBiaya: false
     };
   },
@@ -178,18 +172,6 @@ export default {
   },
   methods: {
     postData() {
-      // if (
-      //   (this.totalBiaya === null,
-      //   this.biayaMedis === null,
-      //   this.akomodasi === null,
-      //   this.catering === null,
-      //   this.lainLain === null)
-      // ) {
-      //   this.peringatan = true;
-      //   this.pesan = 'Input data belum lengkap.';
-      //   return;
-      // }
-
       const answer = window.confirm(
         'Apakah data Anda sudah benar?\nPeriksa kembali sebelum ke isian berikutnya.'
       );
@@ -228,10 +210,6 @@ export default {
         });
         this.$store.state.hitungSiklusForm++;
       }
-    },
-    clearWarning() {
-      this.peringatan = false;
-      this.pesan = null;
     },
     removeDots(numbers) {
       return numbers.split('.').join('');

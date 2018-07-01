@@ -64,7 +64,7 @@
             </td>
             <td class="money">
               <div class="currencySymbol">Rp.&nbsp;</div>
-              {{ formatPrice(sumByPropsObj[4].sum) }},-
+              {{ formatPrice(sumByPropsObj[5].sum) }},-
             </td>
           </tr>
 
@@ -76,7 +76,7 @@
             </td>
             <td class="money">
               <div class="currencySymbol">Rp.&nbsp;</div>
-              {{ formatPrice(sumByPropsObj[5].sum) }},-
+              {{ formatPrice(sumByPropsObj[6].sum) }},-
             </td>
           </tr>
 
@@ -88,7 +88,7 @@
             </td>
             <td class="money">
               <div class="currencySymbol">Rp.&nbsp;</div>
-              {{ formatPrice(sumByPropsObj[6].sum) }},-
+              {{ formatPrice(sumByPropsObj[7].sum) }},-
             </td>
           </tr>
 
@@ -100,7 +100,7 @@
             </td>
             <td class="money">
               <div class="currencySymbol">Rp.&nbsp;</div>
-              {{ formatPrice(sumByPropsObj[7].sum) }},-
+              {{ formatPrice(sumByPropsObj[8].sum) }},-
             </td>
           </tr>
 
