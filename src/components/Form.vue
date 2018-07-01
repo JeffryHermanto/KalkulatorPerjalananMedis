@@ -41,7 +41,9 @@
 
     <!-- ADVISORY BY KEMODIJAKARTA -->
     <button v-show="!isAdvis" class="button is-warning" @click="advis">Advisory by Kemodijakarta</button>
-    <button v-show="isAdvis" class="button is-primary" @click="advis">Advisory by Kemodijakarta</button>
+    <button v-show="isAdvis" class="button is-primary" @click="advis">Advisory by Kemodijakarta&nbsp;&nbsp;
+      <i class="far fa-check-circle"></i>
+    </button>
     <br /><br />
 
     <!-- SELF FILL -->
@@ -185,6 +187,7 @@ export default {
         this.catering = null;
         this.konseling = null;
         this.personalAssistant = null;
+        this.isAdvis = false;
       }
     },
     clearWarning() {
@@ -194,26 +197,26 @@ export default {
     advis() {
       this.isAdvis = !this.isAdvis;
       if (this.isAdvis && this.satuanDurasi === 'Bulan') {
-        this.tiketPesawat = 3000000;
+        // this.tiketPesawat = 3000000;
         this.akomodasi = 4000000;
         this.transport = 500000;
         this.catering = 3000000;
         this.konseling = 500000;
         this.personalAssistant = 500000;
       } else if (this.isAdvis && this.satuanDurasi === 'Minggu') {
-        this.tiketPesawat = 3000000 / 4;
-        this.akomodasi = 4000000 / 4;
-        this.transport = 500000 / 4;
-        this.catering = 3000000 / 4;
-        this.konseling = 500000 / 4;
-        this.personalAssistant = 500000 / 4;
+        // this.tiketPesawat = 3000000 / 4;
+        this.akomodasi = 1000000;
+        this.transport = 300000;
+        this.catering = 750000;
+        this.konseling = 125000;
+        this.personalAssistant = 125000;
       } else if (this.isAdvis && this.satuanDurasi === 'Hari') {
-        this.tiketPesawat = 100000;
-        this.akomodasi = 135000;
-        this.transport = 17000;
-        this.catering = 100000;
-        this.konseling = 17000;
-        this.personalAssistant = 17000;
+        // this.tiketPesawat = 100000;
+        this.akomodasi = 300000;
+        this.transport = 75000;
+        this.catering = 115000;
+        this.konseling = 125000;
+        this.personalAssistant = 150000;
       } else if (this.isAdvis === false) {
         this.tiketPesawat = null;
         this.akomodasi = null;
