@@ -10,16 +10,26 @@
                 <img src="../assets/logo.png" width="100">
               </div>
 
-              <h1 class="is-size-5 has-text-centered has-text-weight-bold	">kemodijakarta.com</h1><br />
+              <h1 class="is-size-5 has-text-centered has-text-weight-bold">kemodijakarta.com</h1><br />
               <p class="is-size-5 has-text-centered instruksi">Kalkulator Perjalanan Medis</p>
               <hr />
 
               <div class="field">
-                <label class="label">Nama</label>
+                <label class="label">Nama Lengkap</label>
                 <div class="control has-icons-left has-icons-right">
-                  <input class="input" type="text" placeholder="Nama Lengkap" v-model="nama" required>
+                  <input class="input" type="text" placeholder="Nama Lengkap" oninvalid="this.setCustomValidity('Silahkan isi nama Anda terlebih dahulu.')" oninput="setCustomValidity('')" v-model="nama" required>
                   <span class="icon is-small is-left">
                     <i class="fas fa-user"></i>
+                  </span>
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="label">Asal</label>
+                <div class="control has-icons-left has-icons-right">
+                  <input class="input" type="text" placeholder="Asal" oninvalid="this.setCustomValidity('Silahkan isi kota asal Anda terlebih dahulu.')" oninput="setCustomValidity('')" v-model="asal" required>
+                  <span class="icon is-small is-left">
+                    <i class="fas fa-map-marker-alt"></i>
                   </span>
                 </div>
               </div>
@@ -31,7 +41,7 @@
                   <label class="label">
                     <i class="fas fa-calendar-alt"></i> &nbsp;Berangkat</label>
                   <div class="control">
-                    <input class="input" type="date" v-model="tanggalBerangkat" :min="tanggalSekarang" required>
+                    <input class="input" type="date" oninvalid="this.setCustomValidity('Silahkan isi tanggal berangkat Anda terlebih dahulu.')" oninput="setCustomValidity('')" v-model="tanggalBerangkat" :min="tanggalSekarang" required>
                   </div>
                 </div>
 
@@ -39,12 +49,12 @@
                   <label class="label">
                     <i class="far fa-calendar-alt"></i> &nbsp;Pulang</label>
                   <div class="control">
-                    <input class="input" type="date" v-model="tanggalPulang" :min="tanggalSekarang" required>
+                    <input class="input" type="date" oninvalid="this.setCustomValidity('Silahkan isi tanggal pulang Anda terlebih dahulu.')" oninput="setCustomValidity('')" v-model="tanggalPulang" :min="tanggalSekarang" required>
                   </div>
                 </div>
               </div>
 
-              <div class="break2"></div>
+              <div class="break2 "></div>
 
               <div class="notification is-danger" v-if="peringatan">
                 <button class="delete" @click="clearWarning"></button>
@@ -52,7 +62,7 @@
               </div>
 
               <button type="submit" class="button is-medium is-success is-fullwidth" @click="masuk">
-                <i class="fas fa-sign-in-alt"></i> &nbsp;&nbsp;Masuk
+                <i class="fas fa-sign-in-alt"></i> &nbsp;&nbsp;Mulai
               </button>
 
             </form>
@@ -71,6 +81,7 @@ export default {
   data() {
     return {
       nama: null,
+      asal: null,
       tanggalSekarang: moment(Date.now()).format('YYYY-MM-DD'),
       tanggalBerangkat: null,
       tanggalPulang: null,
@@ -81,6 +92,7 @@ export default {
   methods: {
     masuk() {
       this.$store.state.nama = this.nama;
+      this.$store.state.asal = this.asal;
       this.$store.state.tanggalBerangkat = this.tanggalBerangkat;
       this.$store.state.tanggalPulang = this.tanggalPulang;
 
@@ -91,7 +103,7 @@ export default {
       this.$store.state.durasiBulan = tglPulang.diff(tglBerangkat, 'months');
 
       if (
-        this.$store.state.durasiHari <= 0 ||
+        this.$store.state.durasiHari < 0 ||
         this.tanggalSekarang > this.tanggalBerangkat
       ) {
         this.pesan = 'Input tanggal tidak valid.';

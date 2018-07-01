@@ -5,12 +5,11 @@
         <div class="columns is-centered">
           <div class="column is-6-tablet is-5-desktop is-5-widescreen">
             <form class="box" @submit.prevent>
-              <Greetings v-if="hitungSiklusForm <= siklusForm" />
+              <Greetings v-show="hitungSiklusForm <= siklusForm" />
               <progress class="progress is-large is-primary show-value" :value="hitungSiklusForm" :max="siklusForm" v-if="hitungSiklusForm <= siklusForm">100%</progress>
               <div class="break"></div>
-              <Form v-if="hitungSiklusForm <= siklusForm" />
-              <PreviewTotal v-if="(hitungSiklusForm > 1) && (hitungSiklusForm <= siklusForm)" />
-              <Summary v-if="hitungSiklusForm > siklusForm" />
+              <Form v-show="hitungSiklusForm <= siklusForm" />
+              <Summary v-show="hitungSiklusForm > siklusForm" />
             </form>
           </div>
         </div>
@@ -22,7 +21,6 @@
 <script>
 import Greetings from '../components/Greetings';
 import Form from '../components/Form';
-import PreviewTotal from '../components/PreviewTotal';
 import Summary from '../components/Summary';
 import { mapGetters } from 'vuex';
 
@@ -31,7 +29,6 @@ export default {
   components: {
     Greetings,
     Form,
-    PreviewTotal,
     Summary
   },
   computed: {

@@ -17,15 +17,12 @@
         </div>
         <div class="media-content">
           <div class="content">
-
-            <div v-for="(prop, key) in collection" :key="key">
-              <p v-show="prop>0">{{ key }}
+            <div v-for="(prop, index) in collection" :key="index">
+              <p>{{ index }}
                 <strong>Rp. {{ formatPrice(prop) }},-</strong>
               </p>
             </div>
-
             <div class="break1"></div>
-
             <blockquote>
               <p>Rp. {{ formatPrice(jumlahkan(collection)) }},-</p>
             </blockquote>
@@ -89,17 +86,14 @@ export default {
     },
     newCollections() {
       let changes = {
-        totalBiaya: 'Total Biaya:',
-        biayaMedis: 'Biaya Medis:',
-        akomodasi: 'Akomodasi:',
-        catering: 'Catering:',
-        lainLain: 'Lain-Lain:',
         konsultasi: 'Konsultasi:',
         tindakan: 'Tindakan:',
         obat: 'Obat:',
         ruangan: 'Ruangan:',
         tiketPesawat: 'Tiket Pesawat:',
+        akomodasi: 'Akomodasi:',
         transport: 'Transport:',
+        catering: 'Catering:',
         konseling: 'Konseling:',
         personalAssistant: 'Personal Assistant:'
       };

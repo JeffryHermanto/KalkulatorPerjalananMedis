@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h1 class="salam">Halo,
-      <strong>{{ nama }}</strong>
+    <h1 class="salam">Halo
+      <strong>{{ nama }}</strong>,
     </h1>
-    <p class="is-size-6 instruksi">Silahkan isi data perjalanan Anda...</p>
+    <p class="is-size-6 instruksi">Silahkan isi data perjalanan medis Anda...</p>
 
     <hr/>
 
@@ -80,5 +80,8 @@ export default {
 .salam {
   font-size: 1.3em;
   padding-bottom: 7px;
+}
+.tag {
+  pointer-events: none;
 }
 </style>

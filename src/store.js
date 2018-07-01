@@ -6,6 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     nama: null,
+    asal: null,
     tanggalBerangkat: null,
     tanggalPulang: null,
     durasiHari: null,
@@ -22,6 +23,9 @@ export default new Vuex.Store({
     nama: state => {
       return state.nama
     },
+    asal: state => {
+      return state.asal
+    },
     tanggalBerangkat: state => {
       return state.tanggalBerangkat
     },
@@ -29,7 +33,7 @@ export default new Vuex.Store({
       return state.tanggalPulang
     },
     durasiHari: state => {
-      return state.durasiHari
+      return state.durasiHari + 1
     },
     durasiMinggu: state => {
       return state.durasiMinggu
@@ -40,10 +44,10 @@ export default new Vuex.Store({
     siklusForm: state => {
       if (state.durasiBulan)
         return state.durasiBulan;
-      if (state.durasiMinggu && state.durasiHari > 7)
+      if (state.durasiMinggu && state.durasiHari >= 7)
         return state.durasiMinggu;
       if (state.durasiHari || state.durasiHari === 0)
-        return state.durasiHari;
+        return state.durasiHari + 1;
     },
     hitungSiklusForm: state => {
       return state.hitungSiklusForm
@@ -51,7 +55,7 @@ export default new Vuex.Store({
     satuanDurasi: state => {
       if (state.durasiBulan)
         return state.satuanDurasi = 'Bulan'
-      if (state.durasiMinggu && state.durasiHari > 7)
+      if (state.durasiMinggu && state.durasiHari >= 7)
         return state.satuanDurasi = 'Minggu'
       if (state.durasiHari || state.durasiHari === 0)
         return state.satuanDurasi = 'Hari'

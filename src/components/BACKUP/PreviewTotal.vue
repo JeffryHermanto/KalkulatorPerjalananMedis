@@ -1,7 +1,6 @@
 <template>
   <div>
-    <br/>
-    <h1>Budget sementara:
+    <h1>Total Biaya:
       <strong>Rp. {{ formatPrice(grandSummary) }},-</strong>
     </h1>
   </div>
