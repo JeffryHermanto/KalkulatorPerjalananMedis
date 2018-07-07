@@ -14,6 +14,10 @@
             <strong>{{ nama }}</strong>
           </h1>
         </div>
+        <div>Kota asal:
+          <strong>{{ asal }}</strong>
+        </div>
+        <br />
         <div class="field is-grouped is-grouped-multiline">
           <div class="control">
             <div class="tags has-addons">
@@ -40,14 +44,6 @@
         <!-- VIEW SELECT -->
         <div class="tabs is-boxed">
           <ul>
-            <li :class="[ selectedView === 'tableView' ? 'is-active' : '']" @click="selectedView = 'tableView'">
-              <a>
-                <span class=" icon is-small ">
-                  <i class="fas fa-table "></i>
-                </span>
-                <span>Table View</span>
-              </a>
-            </li>
             <li :class="[ selectedView === 'listView' ? 'is-active' : '']" @click="selectedView = 'listView'">
               <a>
                 <span class="icon is-small ">
@@ -56,12 +52,20 @@
                 <span>List View</span>
               </a>
             </li>
+            <li :class="[ selectedView === 'tableView' ? 'is-active' : '']" @click="selectedView = 'tableView'">
+              <a>
+                <span class=" icon is-small ">
+                  <i class="fas fa-table "></i>
+                </span>
+                <span>Desktop View</span>
+              </a>
+            </li>
           </ul>
         </div>
 
         <!-- SELECTED VIEW -->
-        <TableView v-show="selectedView === 'tableView'" />
         <ListView v-show="selectedView === 'listView'" />
+        <TableView v-show="selectedView === 'tableView'" />
 
       </section>
       <footer class="modal-card-foot ">
@@ -85,12 +89,13 @@ export default {
   },
   data() {
     return {
-      selectedView: 'tableView'
+      selectedView: 'listView'
     };
   },
   computed: {
     ...mapGetters([
       'nama',
+      'asal',
       'tanggalBerangkat',
       'tanggalPulang',
       'durasiHari',
@@ -112,7 +117,7 @@ export default {
         };
       if (this.durasiMinggu)
         return {
-          durasi: this.durasiMinggu,
+          durasi: this.durasiMinggu + 1,
           satuan: 'Minggu',
           warna: 'tag is-warning'
         };

@@ -45,7 +45,7 @@ export default new Vuex.Store({
       if (state.durasiBulan)
         return state.durasiBulan;
       if (state.durasiMinggu && state.durasiHari >= 7)
-        return state.durasiMinggu;
+        return state.durasiMinggu + 1;
       if (state.durasiHari || state.durasiHari === 0)
         return state.durasiHari + 1;
     },

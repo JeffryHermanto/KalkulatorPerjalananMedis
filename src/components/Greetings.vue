@@ -61,7 +61,7 @@ export default {
         };
       if (this.durasiMinggu && this.durasiHari > 7)
         return {
-          durasi: this.durasiMinggu,
+          durasi: this.durasiMinggu + 1,
           satuan: 'Minggu',
           warna: 'tag is-warning'
         };
