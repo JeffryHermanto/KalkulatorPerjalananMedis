@@ -547,22 +547,26 @@ input[type='number']::-webkit-outer-spin-button {
   color: black;
 }
 
+/* Tooltip container */
 .tooltip {
   position: relative;
   display: inline-block;
+  /* border-bottom: 1px dotted black; */
 }
 
+/* Tooltip text */
 .tooltip .tooltiptext {
   visibility: hidden;
   width: 320px;
   background-color: #f0fafc;
   color: #1c696b;
   text-align: left;
+  padding: 5px 0;
   border-radius: 6px;
   border: 1px solid #1c696b;
   padding: 15px;
 
-  /* Position the tooltip */
+  /* Position the tooltip text - see examples below! */
   position: absolute;
   z-index: 1;
   bottom: 100%;
@@ -570,7 +574,20 @@ input[type='number']::-webkit-outer-spin-button {
   margin-left: -300px;
 }
 
+/* Show the tooltip text when you mouse over the tooltip container */
 .tooltip:hover .tooltiptext {
   visibility: visible;
+}
+
+/* Bottom Arrow */
+.tooltip .tooltiptext::after {
+  content: ' ';
+  position: absolute;
+  top: 100%; /* At the bottom of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: #1c696b transparent transparent transparent;
 }
 </style>

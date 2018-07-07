@@ -27,8 +27,13 @@
   <meta name="msapplication-TileImage" content="./favicon/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
 
+  <!-- jQuery -->
+  <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
   <!-- RELOAD GUARD -->
   <script>
+    window.scrollTo(0, 1) // Hide toolber in mobile safari
+
     // history.pushState(null, null, location.href);
     window.onpopstate = function() {
       window.alert('Jangan tekan tombol back sebelum selesai.\nSilahkan reload untuk memulai lagi.')
@@ -61,6 +66,11 @@
   </noscript>
   <div id="app"></div>
   <!-- built files will be auto injected -->
+  <script>
+    if ($('[type="date"]').prop('type') != 'date') {
+      $('[type="date"]').datepicker();
+    }
+  </script>
 </body>
 
 </html>
