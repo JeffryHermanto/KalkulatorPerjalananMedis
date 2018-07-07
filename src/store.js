@@ -18,6 +18,7 @@ export default new Vuex.Store({
     collections: [],
     grandSummary: null,
     sumByPropsObj: null,
+    tiketPesawatPP: null
   },
   getters: {
     nama: state => {
@@ -91,6 +92,9 @@ export default new Vuex.Store({
           sum: values.reduce((a, b) => a + b)
         })
       );
+    },
+    tiketPesawatPP: state => {
+      return state.tiketPesawatPP
     }
   },
   mutations: {

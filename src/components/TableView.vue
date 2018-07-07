@@ -163,18 +163,18 @@
             <td>Lain-lain</td>
             <td v-show="isLainLain === false" class="money" v-for="(collection, index) in collections" :key="index">
               <div class="currencySymbol">Rp.&nbsp;</div>
-              {{ formatPrice(collection.lainLain + collection.tiketPesawat + collection.transport + collection.konseling + collection.personalAssistant) }},-
+              {{ formatPrice(collection.lainLain + collection.transport + collection.konseling + collection.personalAssistant) }},-
             </td>
             <td v-show="isLainLain" class="money" v-for="(collection, index) in collections" :key="index"></td>
             <!-- TOTAL SAMPING -->
             <td v-show="isLainLain === false" class="money">
               <div class="currencySymbol">Rp.&nbsp;</div>
-              {{ formatPrice(sumByPropsObj[2].sum + sumByPropsObj[9].sum + sumByPropsObj[10].sum + sumByPropsObj[11].sum + sumByPropsObj[12].sum) }},-
+              {{ formatPrice(sumByPropsObj[2].sum + sumByPropsObj[9].sum + sumByPropsObj[10].sum + sumByPropsObj[11].sum) }},-
             </td>
             <td v-show="isLainLain"></td>
           </tr>
 
-          <tr v-show="collections[0].tiketPesawat">
+          <tr v-show="collections[0].transport">
             <td>
               <span @click="toggleIsLainLain" v-show="!isLainLain">
                 <i class="fas fa-angle-right"></i>
@@ -186,27 +186,15 @@
             </td>
             <td v-show="isLainLain === false" class="money" v-for="(collection, index) in collections" :key="index">
               <div class="currencySymbol">Rp.&nbsp;</div>
-              {{ formatPrice(collection.lainLain + collection.tiketPesawat + collection.transport + collection.konseling + collection.personalAssistant) }},-
+              {{ formatPrice(collection.lainLain + collection.transport + collection.konseling + collection.personalAssistant) }},-
             </td>
             <td v-show="isLainLain" class="money" v-for="(collection, index) in collections" :key="index"></td>
             <!-- TOTAL SAMPING -->
             <td v-show="isLainLain === false" class="money">
               <div class="currencySymbol">Rp.&nbsp;</div>
-              {{ formatPrice(sumByPropsObj[2].sum + sumByPropsObj[9].sum + sumByPropsObj[10].sum + sumByPropsObj[11].sum + sumByPropsObj[12].sum) }},-
+              {{ formatPrice(sumByPropsObj[2].sum + sumByPropsObj[9].sum + sumByPropsObj[10].sum + sumByPropsObj[11].sum) }},-
             </td>
             <td v-show="isLainLain"></td>
-          </tr>
-
-          <tr v-if="isLainLain">
-            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tiket Pesawat</td>
-            <td class="money" v-for="(collection, index) in collections" :key="index">
-              <div class="currencySymbol">Rp.&nbsp;</div>
-              {{ formatPrice(collection.tiketPesawat) }},-
-            </td>
-            <td class="money">
-              <div class="currencySymbol">Rp.&nbsp;</div>
-              {{ formatPrice(sumByPropsObj[9].sum) }},-
-            </td>
           </tr>
 
           <tr v-if="isLainLain">
@@ -217,7 +205,7 @@
             </td>
             <td class="money">
               <div class="currencySymbol">Rp.&nbsp;</div>
-              {{ formatPrice(sumByPropsObj[10].sum) }},-
+              {{ formatPrice(sumByPropsObj[9].sum) }},-
             </td>
           </tr>
 
@@ -229,7 +217,7 @@
             </td>
             <td class="money">
               <div class="currencySymbol">Rp.&nbsp;</div>
-              {{ formatPrice(sumByPropsObj[11].sum) }},-
+              {{ formatPrice(sumByPropsObj[10].sum) }},-
             </td>
           </tr>
 
@@ -241,7 +229,7 @@
             </td>
             <td class="money">
               <div class="currencySymbol">Rp.&nbsp;</div>
-              {{ formatPrice(sumByPropsObj[12].sum) }},-
+              {{ formatPrice(sumByPropsObj[11].sum) }},-
             </td>
           </tr>
 
@@ -256,7 +244,7 @@
             <td class="money">
               <strong>
                 <div class="currencySymbol">Rp.&nbsp;</div>
-                {{ formatPrice(grandSummary) }}
+                {{ formatPrice(grandSummary) }},-
               </strong>
             </td>
           </tr>
@@ -341,7 +329,7 @@ export default {
     toggleIsLainLain() {
       this.isLainLain = !this.isLainLain;
       if (this.isLainLain) {
-        this.rowSpanLainLain = 7;
+        this.rowSpanLainLain = 6;
       } else {
         this.rowSpanLainLain = 3;
       }

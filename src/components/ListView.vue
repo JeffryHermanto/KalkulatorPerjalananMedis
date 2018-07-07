@@ -98,7 +98,6 @@ export default {
         akomodasi: 'Akomodasi:',
         catering: 'Catering:',
         lainLain: 'Lain-Lain:',
-        tiketPesawat: 'Tiket Pesawat:',
         transport: 'Transport:',
         konseling: 'Konseling:',
         personalAssistant: 'Personal Assistant:'

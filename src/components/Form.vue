@@ -210,15 +210,15 @@
 
       <div v-show="isLainLain">
         <!-- LIST BREAKDOWN LAIN-LAIN -->
-        <p class="help">Tiket</p>
+        <!-- <p class="help">Tiket Pesawat PP</p>
         <div class="field has-addons">
           <p class="control">
             <a class="button rupiah">Rp.</a>
           </p>
           <p class="control is-expanded">
-            <input class="input" type="text" placeholder="Tiket" v-model="tiketPesawat">
+            <input class="input" type="text" placeholder="Tiket Pesawat PP" v-model="tiketPesawatPP">
           </p>
-        </div>
+        </div> -->
 
         <p class="help">Transport Lokal</p>
         <div class="field has-addons">
@@ -288,14 +288,14 @@ export default {
       ruangan: null, // 4
       akomodasi: null, // 5
       catering: null, // 6
-      tiketPesawat: null, // 7
-      transport: null, // 8
-      konseling: null, // 9
-      personalAssistant: null, // 10
+      transport: null, // 7
+      konseling: null, // 8
+      personalAssistant: null, // 9
       isTotalBiaya: false,
       isBiayaMedis: false,
       isLainLain: false,
-      tipeAkomodasi: null
+      tipeAkomodasi: null,
+      tiketPesawatPP: null
     };
   },
   watch: {
@@ -353,12 +353,6 @@ export default {
         .replace(/\B(?=(\d{3})+(?!\d))/g, '.');
       this.$nextTick(() => (this.catering = result));
     },
-    tiketPesawat: function(newValue) {
-      const result = newValue
-        .replace(/\D/g, '')
-        .replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-      this.$nextTick(() => (this.tiketPesawat = result));
-    },
     transport: function(newValue) {
       const result = newValue
         .replace(/\D/g, '')
@@ -376,6 +370,12 @@ export default {
         .replace(/\D/g, '')
         .replace(/\B(?=(\d{3})+(?!\d))/g, '.');
       this.$nextTick(() => (this.personalAssistant = result));
+    },
+    tiketPesawatPP: function(newValue) {
+      const result = newValue
+        .replace(/\D/g, '')
+        .replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+      this.$nextTick(() => (this.tiketPesawatPP = result));
     }
   },
   methods: {
@@ -394,7 +394,6 @@ export default {
           ruangan: 0,
           akomodasi: 0,
           catering: 0,
-          tiketPesawat: 0,
           transport: 0,
           konseling: 0,
           personalAssistant: 0
@@ -417,7 +416,6 @@ export default {
           ruangan: parseInt(this.removeDots(this.ruangan)) || 0,
           akomodasi: parseInt(this.removeDots(this.akomodasi)) || 0,
           catering: parseInt(this.removeDots(this.catering)) || 0,
-          tiketPesawat: parseInt(this.removeDots(this.tiketPesawat)) || 0,
           transport: parseInt(this.removeDots(this.transport)) || 0,
           konseling: parseInt(this.removeDots(this.konseling)) || 0,
           personalAssistant:
@@ -440,7 +438,6 @@ export default {
           ruangan: parseInt(this.removeDots(this.ruangan)) || 0,
           akomodasi: parseInt(this.removeDots(this.akomodasi)) || 0,
           catering: parseInt(this.removeDots(this.catering)) || 0,
-          tiketPesawat: 0,
           transport: 0,
           konseling: 0,
           personalAssistant: 0
@@ -462,7 +459,6 @@ export default {
           ruangan: 0,
           akomodasi: parseInt(this.removeDots(this.akomodasi)) || 0,
           catering: parseInt(this.removeDots(this.catering)) || 0,
-          tiketPesawat: parseInt(this.removeDots(this.tiketPesawat)) || 0,
           transport: parseInt(this.removeDots(this.transport)) || 0,
           konseling: parseInt(this.removeDots(this.konseling)) || 0,
           personalAssistant:
@@ -481,7 +477,6 @@ export default {
           ruangan: 0,
           akomodasi: parseInt(this.removeDots(this.akomodasi)) || 0,
           catering: parseInt(this.removeDots(this.catering)) || 0,
-          tiketPesawat: 0,
           transport: 0,
           konseling: 0,
           personalAssistant: 0
