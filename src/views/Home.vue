@@ -56,8 +56,7 @@
 
               <!-- SAFARI USER -->
               <div class="help">
-                <i class="far fa-lightbulb"></i> Jika Anda menggunakan
-                <em>browser</em> Safari, ketik tanggal dengan format YYYY/MM/DD
+                <i class="far fa-lightbulb"></i> Untuk pengguna Safari, ketik tanggal dengan format YYYY/MM/DD
               </div>
               <br />
 
