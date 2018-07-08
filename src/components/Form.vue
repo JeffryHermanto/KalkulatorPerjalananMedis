@@ -59,7 +59,6 @@
           </a>
         </p>
       </div>
-      <!-- <br /> -->
 
       <!-- /////////////////////////////////////////////////////////////////////////////// -->
 
@@ -210,16 +209,6 @@
 
       <div v-show="isLainLain">
         <!-- LIST BREAKDOWN LAIN-LAIN -->
-        <!-- <p class="help">Tiket Pesawat PP</p>
-        <div class="field has-addons">
-          <p class="control">
-            <a class="button rupiah">Rp.</a>
-          </p>
-          <p class="control is-expanded">
-            <input class="input" type="text" placeholder="Tiket Pesawat PP" v-model="tiketPesawatPP">
-          </p>
-        </div> -->
-
         <p class="help">Transport Lokal</p>
         <div class="field has-addons">
           <p class="control">
@@ -381,7 +370,7 @@ export default {
   methods: {
     postData() {
       const answer = window.confirm(
-        'Apakah data Anda sudah benar?\nPeriksa kembali sebelum ke isian berikutnya.'
+        'Apakah isian data Anda sudah LENGKAP dan BENAR?\nPeriksa kembali sebelum ke isian berikutnya.'
       );
       if (answer && this.totalBiaya) {
         this.$store.state.collections.push({
