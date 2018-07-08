@@ -1,0 +1,7 @@
+@import "./node_modules/bulma/sass/utilities/initial-variables";
+@import "./node_modules/bulma/sass/utilities/functions";
+@import "./node_modules/bulma/sass/utilities/derived-variables";
+$modal-content-width: 1280px;
+$modal-card-spacing: 200px;
+@import "./node_modules/bulma/bulma";
+// sass --watch mystyles.scss:node_modules/bulma/css/bulma.css
