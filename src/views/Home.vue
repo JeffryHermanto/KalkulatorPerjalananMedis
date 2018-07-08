@@ -54,7 +54,12 @@
                 </div>
               </div>
 
-              <div class="break2 "></div>
+              <!-- SAFARI USER -->
+              <div class="help">
+                <i class="far fa-lightbulb"></i> Jika Anda menggunakan
+                <em>browser</em> Safari, ketik tanggal dengan format YYYY/MM/DD
+              </div>
+              <br />
 
               <div class="notification is-danger" v-if="peringatan">
                 <button class="delete" @click="clearWarning"></button>
