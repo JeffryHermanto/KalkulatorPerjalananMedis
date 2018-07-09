@@ -89,12 +89,12 @@ export default {
     },
     newCollections() {
       let changes = {
+        totalBiaya: 'Total Biaya:',
         biayaMedis: 'Biaya Medis:',
         konsultasi: 'Konsultasi:',
         tindakan: 'Tindakan:',
         obat: 'Obat:',
         ruangan: 'Ruangan:',
-        biayaNonMedis: 'Biaya Non-Medis:',
         akomodasi: 'Akomodasi:',
         catering: 'Catering:',
         lainLain: 'Lain-Lain:',

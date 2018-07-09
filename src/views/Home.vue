@@ -56,7 +56,8 @@
 
               <!-- SAFARI USER -->
               <div class="help">
-                <i class="far fa-lightbulb"></i> Untuk pengguna Safari, ketik tanggal dengan format YYYY/MM/DD
+                <i class="far fa-lightbulb"></i> &nbsp;Di
+                <em>browser Safari</em>, ketik tanggal dengan format YYYY/MM/DD
               </div>
               <br />
 
@@ -110,7 +111,8 @@ export default {
         this.$store.state.durasiHari < 0 ||
         this.tanggalSekarang > this.tanggalBerangkat
       ) {
-        this.pesan = 'Input tanggal tidak valid.';
+        this.pesan =
+          'Input tanggal tidak valid. Pastikan tanggal berangkat setelah tanggal kemarin dan tanggal pulang setelah tanggal berangkat.';
         this.peringatan = true;
       } else {
         this.$router.push({

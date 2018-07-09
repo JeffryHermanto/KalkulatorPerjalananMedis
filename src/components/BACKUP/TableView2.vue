@@ -13,10 +13,44 @@
           </tr>
         </thead>
 
-        <tbody>
+        <!-- TOTAL BIAYA -->
+        <tr v-show="cekIsiMedis(collections)">
+          <td style="vertical-align: middle; text-align: left"></td>
+          <td>Total Biaya</td>
+          <td class="money" v-for="(collection, index) in collections" :key="index">
+            <div v-show="collection.totalBiaya > 0" class="currencySymbol">Rp.&nbsp;</div>
+            <span v-show="collection.totalBiaya > 0">{{ formatPrice(collection.totalBiaya) }},-</span>
+          </td>
 
-          <!-- BIAYA MEDIS -->
-          <tr>
+          <!-- TOTAL SAMPING -->
+          <td v-show="sumByPropsObj[0].sum > 0" class="money">
+            <div class="currencySymbol">Rp.&nbsp;</div>
+            {{ formatPrice(sumByPropsObj[0].sum) }},-
+          </td>
+          <td v-show="!sumByPropsObj[0].sum > 0"></td>
+        </tr>
+
+        <!-- BIAYA MEDIS -->
+        <tbody>
+          <tr v-show="cekIsiMedis(collections)">
+            <td :rowspan="rowSpanMedis" style="vertical-align: middle; text-align: left">
+              <strong>Medis</strong>
+            </td>
+            <td>Medis</td>
+            <td v-show="isMedis === false" class="money" v-for="(collection, index) in collections" :key="index">
+              <div class="currencySymbol">Rp.&nbsp;</div>
+              {{ formatPrice(collection.biayaMedis + collection.konsultasi + collection.tindakan + collection.obat + collection.ruangan) }},-
+            </td>
+            <td v-show="isMedis" class="money" v-for="(collection, index) in collections" :key="index"></td>
+            <!-- TOTAL SAMPING -->
+            <td v-show="isMedis === false" class="money">
+              <div class="currencySymbol">Rp.&nbsp;</div>
+              {{ formatPrice(sumByPropsObj[1].sum + sumByPropsObj[3].sum + sumByPropsObj[4].sum + sumByPropsObj[5].sum + sumByPropsObj[6].sum) }},-
+            </td>
+            <td v-show="isMedis"></td>
+          </tr>
+
+          <tr v-show="collections[0].konsultasi">
             <td :rowspan="rowSpanMedis" style="vertical-align: middle; text-align: left">
               <strong>Medis</strong>
             </td>
@@ -33,24 +67,15 @@
               <div class="currencySymbol">Rp.&nbsp;</div>
               {{ formatPrice(collection.biayaMedis + collection.konsultasi + collection.tindakan + collection.obat + collection.ruangan) }},-
             </td>
-            <td v-show="isMedis" class="money" v-for="(collection, index) in collections" :key="index">
-              <div v-show="collection.konsultasi === 0">
-                <div class="currencySymbol">Rp.&nbsp;</div>
-                {{ formatPrice(collection.biayaMedis + collection.konsultasi + collection.tindakan + collection.obat + collection.ruangan) }},-
-              </div>
-            </td>
+            <td v-show="isMedis" class="money" v-for="(collection, index) in collections" :key="index"></td>
             <!-- TOTAL SAMPING -->
             <td v-show="isMedis === false" class="money">
               <div class="currencySymbol">Rp.&nbsp;</div>
-              {{ formatPrice(sumByPropsObj[0].sum + sumByPropsObj[1].sum + sumByPropsObj[2].sum + sumByPropsObj[3].sum + sumByPropsObj[4].sum) }},-
+              {{ formatPrice(sumByPropsObj[1].sum + sumByPropsObj[3].sum + sumByPropsObj[4].sum + sumByPropsObj[5].sum + sumByPropsObj[6].sum) }},-
             </td>
-            <td v-show="isMedis" class="money">
-              <div class="currencySymbol">Rp.&nbsp;</div>
-              {{ formatPrice(sumByPropsObj[0].sum) }},-
-            </td>
+            <td v-show="isMedis"></td>
           </tr>
 
-          <!-- EXPAND BIAYA MEDIS -->
           <tr v-if="isMedis">
             <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Konsultasi</td>
             <td class="money" v-for="(collection, index) in collections" :key="index">
@@ -60,7 +85,7 @@
             <!-- TOTAL SAMPING -->
             <td class="money">
               <div class="currencySymbol">Rp.&nbsp;</div>
-              {{ formatPrice(sumByPropsObj[1].sum) }},-
+              {{ formatPrice(sumByPropsObj[3].sum) }},-
             </td>
           </tr>
 
@@ -73,7 +98,7 @@
             <!-- TOTAL SAMPING -->
             <td class="money">
               <div class="currencySymbol">Rp.&nbsp;</div>
-              {{ formatPrice(sumByPropsObj[2].sum) }},-
+              {{ formatPrice(sumByPropsObj[4].sum) }},-
             </td>
           </tr>
 
@@ -86,7 +111,7 @@
             <!-- TOTAL SAMPING -->
             <td class="money">
               <div class="currencySymbol">Rp.&nbsp;</div>
-              {{ formatPrice(sumByPropsObj[3].sum) }},-
+              {{ formatPrice(sumByPropsObj[5].sum) }},-
             </td>
           </tr>
 
@@ -99,66 +124,19 @@
             <!-- TOTAL SAMPING -->
             <td class="money">
               <div class="currencySymbol">Rp.&nbsp;</div>
-              {{ formatPrice(sumByPropsObj[4].sum) }},-
-            </td>
-          </tr>
-
-          <!-- ///////////////////////////////////////////////////////////////////////////// -->
-
-          <!-- BIAYA NON-MEDIS  -->
-          <tr>
-            <td :rowspan="rowSpanNonMedis" style="vertical-align: middle; text-align: left">
-              <strong>Non-Medis</strong>
-            </td>
-            <td>
-              <span @click="toggleIsNonMedis" v-show="!isNonMedis">
-                <i class="fas fa-angle-right"></i>
-              </span>
-              <span @click="toggleIsNonMedis" v-show="isNonMedis">
-                <i class="fas fa-angle-down"></i>
-              </span>
-              <span @click="toggleIsNonMedis">&nbsp;Non-Medis</span>
-            </td>
-            <td v-show="isNonMedis === false" class="money" v-for="(collection, index) in collections" :key="index">
-              <div class="currencySymbol">Rp.&nbsp;</div>
-              {{ formatPrice(collection.biayaNonMedis + collection.akomodasi + collection.catering + collection.lainLain + collection.transport + collection.konseling + collection.personalAssistant) }},-
-            </td>
-            <td v-show="isNonMedis" class="money" v-for="(collection, index) in collections" :key="index">
-              <div v-show="collection.akomodasi === 0">
-                <div class="currencySymbol">Rp.&nbsp;</div>
-                {{ formatPrice(collection.biayaNonMedis + collection.akomodasi + collection.catering + collection.lainLain + collection.transport + collection.konseling + collection.personalAssistant) }},-
-              </div>
-            </td>
-            <!-- TOTAL SAMPING -->
-            <td v-show="isNonMedis === false" class="money">
-              <div class="currencySymbol">Rp.&nbsp;</div>
-              {{ formatPrice(sumByPropsObj[5].sum + sumByPropsObj[6].sum + sumByPropsObj[7].sum + sumByPropsObj[8].sum + sumByPropsObj[9].sum + sumByPropsObj[10].sum + sumByPropsObj[11].sum) }},-
-            </td>
-            <td v-show="isNonMedis" class="money">
-              <div class="currencySymbol">Rp.&nbsp;</div>
-              {{ formatPrice(sumByPropsObj[5].sum) }},-
-            </td>
-          </tr>
-
-          <!-- EXPAND BIAYA NON-MEDIS -->
-          <tr v-if="isNonMedis">
-            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Akomodasi</td>
-            <td class="money" v-for="(collection, index) in collections" :key="index">
-              <div class="currencySymbol">Rp.&nbsp;</div>
-              {{ formatPrice(collection.akomodasi) }},-
-            </td>
-            <!-- TOTAL SAMPING -->
-            <td class="money">
-              <div class="currencySymbol">Rp.&nbsp;</div>
               {{ formatPrice(sumByPropsObj[6].sum) }},-
             </td>
           </tr>
 
-          <tr v-if="isNonMedis">
-            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Makan &amp; Minum</td>
+          <!-- BIAYA NON MEDIS -->
+          <tr v-show="cekIsiNonMedisAkomodasi(collections)">
+            <td :rowspan="rowSpanLainLain" style="vertical-align: middle; text-align: left">
+              <strong>Non-<br />Medis</strong>
+            </td>
+            <td>Akomodasi</td>
             <td class="money" v-for="(collection, index) in collections" :key="index">
               <div class="currencySymbol">Rp.&nbsp;</div>
-              {{ formatPrice(collection.catering) }},-
+              {{ formatPrice(collection.akomodasi) }},-
             </td>
             <!-- TOTAL SAMPING -->
             <td class="money">
@@ -167,15 +145,41 @@
             </td>
           </tr>
 
+          <tr v-show="cekIsiNonMedisAkomodasi(collections)">
+            <td>Makan &amp; Minum</td>
+            <td class="money" v-for="(collection, index) in collections" :key="index">
+              <div class="currencySymbol">Rp.&nbsp;</div>
+              {{ formatPrice(collection.catering) }},-
+            </td>
+            <!-- TOTAL SAMPING -->
+            <td class="money">
+              <div class="currencySymbol">Rp.&nbsp;</div>
+              {{ formatPrice(sumByPropsObj[8].sum) }},-
+            </td>
+          </tr>
+
           <!-- LAIN-LAIN -->
-          <tr v-if="isNonMedis">
+          <tr v-show="cekIsiLainLain(collections)">
+            <td>Lain-lain</td>
+            <td v-show="isLainLain === false" class="money" v-for="(collection, index) in collections" :key="index">
+              <div class="currencySymbol">Rp.&nbsp;</div>
+              {{ formatPrice(collection.lainLain + collection.transport + collection.konseling + collection.personalAssistant) }},-
+            </td>
+            <td v-show="isLainLain" class="money" v-for="(collection, index) in collections" :key="index"></td>
+            <!-- TOTAL SAMPING -->
+            <td v-show="isLainLain === false" class="money">
+              <div class="currencySymbol">Rp.&nbsp;</div>
+              {{ formatPrice(sumByPropsObj[2].sum + sumByPropsObj[9].sum + sumByPropsObj[10].sum + sumByPropsObj[11].sum) }},-
+            </td>
+            <td v-show="isLainLain"></td>
+          </tr>
+
+          <tr v-show="collections[0].transport">
             <td>
               <span @click="toggleIsLainLain" v-show="!isLainLain">
-                &nbsp;&nbsp;&nbsp;&nbsp;
                 <i class="fas fa-angle-right"></i>
               </span>
               <span @click="toggleIsLainLain" v-show="isLainLain">
-                &nbsp;&nbsp;&nbsp;&nbsp;
                 <i class="fas fa-angle-down"></i>
               </span>
               <span @click="toggleIsLainLain">&nbsp;Lain-lain</span>
@@ -184,26 +188,17 @@
               <div class="currencySymbol">Rp.&nbsp;</div>
               {{ formatPrice(collection.lainLain + collection.transport + collection.konseling + collection.personalAssistant) }},-
             </td>
-            <td v-show="isLainLain" class="money" v-for="(collection, index) in collections" :key="index">
-              <div v-show="collection.transport === 0">
-                <div class="currencySymbol">Rp.&nbsp;</div>
-                {{ formatPrice(collection.lainLain + collection.transport + collection.konseling + collection.personalAssistant) }},-
-              </div>
-            </td>
+            <td v-show="isLainLain" class="money" v-for="(collection, index) in collections" :key="index"></td>
             <!-- TOTAL SAMPING -->
             <td v-show="isLainLain === false" class="money">
               <div class="currencySymbol">Rp.&nbsp;</div>
-              {{ formatPrice(sumByPropsObj[8].sum + sumByPropsObj[9].sum + sumByPropsObj[10].sum + sumByPropsObj[11].sum) }},-
+              {{ formatPrice(sumByPropsObj[2].sum + sumByPropsObj[9].sum + sumByPropsObj[10].sum + sumByPropsObj[11].sum) }},-
             </td>
-            <td v-show="isLainLain" class="money">
-              <div class="currencySymbol">Rp.&nbsp;</div>
-              {{ formatPrice(sumByPropsObj[8].sum) }},-
-            </td>
+            <td v-show="isLainLain"></td>
           </tr>
 
-          <!-- EXPAND LAIN-LAIN -->
           <tr v-if="isLainLain">
-            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Transport Lokal</td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Transport</td>
             <td class="money" v-for="(collection, index) in collections" :key="index">
               <div class="currencySymbol">Rp.&nbsp;</div>
               {{ formatPrice(collection.transport) }},-
@@ -215,7 +210,7 @@
           </tr>
 
           <tr v-if="isLainLain">
-            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Konseling</td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Konseling</td>
             <td class="money" v-for="(collection, index) in collections" :key="index">
               <div class="currencySymbol">Rp.&nbsp;</div>
               {{ formatPrice(collection.konseling) }},-
@@ -227,7 +222,7 @@
           </tr>
 
           <tr v-if="isLainLain">
-            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Personal Assistant</td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Personal Assistant</td>
             <td class="money" v-for="(collection, index) in collections" :key="index">
               <div class="currencySymbol">Rp.&nbsp;</div>
               {{ formatPrice(collection.personalAssistant) }},-
@@ -331,21 +326,12 @@ export default {
         this.rowSpanMedis = 1;
       }
     },
-    toggleIsNonMedis() {
-      this.isNonMedis = !this.isNonMedis;
-      this.isLainLain = false;
-      if (this.isNonMedis) {
-        this.rowSpanNonMedis = 4;
-      } else {
-        this.rowSpanNonMedis = 1;
-      }
-    },
     toggleIsLainLain() {
       this.isLainLain = !this.isLainLain;
       if (this.isLainLain) {
-        this.rowSpanNonMedis = 7;
+        this.rowSpanLainLain = 6;
       } else {
-        this.rowSpanNonMedis = 4;
+        this.rowSpanLainLain = 3;
       }
     },
     cekIsiMedis(array) {
@@ -377,8 +363,6 @@ export default {
     return {
       isMedis: false,
       rowSpanMedis: 1,
-      isNonMedis: false,
-      rowSpanNonMedis: 1,
       isLainLain: false,
       rowSpanLainLain: 3
     };
