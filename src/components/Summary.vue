@@ -259,14 +259,47 @@ export default {
       let yAxis1 = 95;
       let yAxis2 = 102;
       for (let i = 0; i < chunk.length; i++) {
-        doc.text(15, yAxis1, `${this.durasi.satuan} ke ${i + 1}`);
-        doc.text(40, yAxis1, chunk[i][0]);
-        doc.text(40, yAxis2, chunk[i][5]);
+        doc.text(15, yAxis1, `${this.durasi.satuan} ke-${i + 1}`);
+        doc.text(
+          45,
+          yAxis1,
+          `Biaya Medis: Rp. ${this.formatPrice(
+            this.collections[i].biayaMedis +
+              this.collections[i].konsultasi +
+              this.collections[i].tindakan +
+              this.collections[i].obat +
+              this.collections[i].ruangan
+          ).toString()},-`
+        );
+        doc.text(
+          45,
+          yAxis2,
+          `Biaya Non-Medis: Rp. ${this.formatPrice(
+            this.collections[i].biayaNonMedis +
+              this.collections[i].akomodasi +
+              this.collections[i].catering +
+              this.collections[i].lainLain +
+              this.collections[i].transport +
+              this.collections[i].konseling +
+              this.collections[i].personalAssistant
+          ).toString()},-`
+        );
         doc.text(
           122,
           yAxis1,
           `Sub-Total: Rp. ${this.formatPrice(
-            this.collections[i].biayaMedis + this.collections[i].biayaNonMedis
+            this.collections[i].biayaMedis +
+              this.collections[i].konsultasi +
+              this.collections[i].tindakan +
+              this.collections[i].obat +
+              this.collections[i].ruangan +
+              this.collections[i].biayaNonMedis +
+              this.collections[i].akomodasi +
+              this.collections[i].catering +
+              this.collections[i].lainLain +
+              this.collections[i].transport +
+              this.collections[i].konseling +
+              this.collections[i].personalAssistant
           )},-`
         );
         yAxis1 += 20;
