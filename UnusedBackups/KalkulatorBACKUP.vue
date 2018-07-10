@@ -43,7 +43,7 @@ progress.show-value {
 }
 
 progress.show-value:after {
-  /* content: attr(value) ' dari ' attr(max); */
+  content: attr(value) ' dari ' attr(max);
   position: absolute;
   top: 0;
   left: 50%;

@@ -375,25 +375,31 @@ export default {
   },
   methods: {
     postData() {
-      this.$store.state.collections.push({
-        // MEDIS
-        biayaMedis: parseInt(this.removeDots(this.biayaMedis)), // 0
-        konsultasi: parseInt(this.removeDots(this.konsultasi)), // 1
-        tindakan: parseInt(this.removeDots(this.tindakan)), // 2
-        obat: parseInt(this.removeDots(this.obat)), // 3
-        ruangan: parseInt(this.removeDots(this.ruangan)), // 4
-        // NON-MEDIS
-        biayaNonMedis: parseInt(this.removeDots(this.biayaNonMedis)), // 5
-        akomodasi: parseInt(this.removeDots(this.akomodasi)), // 6
-        catering: parseInt(this.removeDots(this.catering)), // 7
-        // LAIN-LAIN
-        lainLain: parseInt(this.removeDots(this.lainLain)), // 8
-        transport: parseInt(this.removeDots(this.transport)), // 9
-        konseling: parseInt(this.removeDots(this.konseling)), // 10
-        personalAssistant: parseInt(this.removeDots(this.personalAssistant)) // 11
-      });
+      const answer = window.confirm(
+        'Klik OK jika isian data Anda sudah LENGKAP dan BENAR.\nKlik Cancel untuk memeriksa kembali isian data Anda.'
+      );
 
-      this.$store.state.hitungSiklusForm++;
+      if (answer) {
+        this.$store.state.collections.push({
+          // MEDIS
+          biayaMedis: parseInt(this.removeDots(this.biayaMedis)), // 0
+          konsultasi: parseInt(this.removeDots(this.konsultasi)), // 1
+          tindakan: parseInt(this.removeDots(this.tindakan)), // 2
+          obat: parseInt(this.removeDots(this.obat)), // 3
+          ruangan: parseInt(this.removeDots(this.ruangan)), // 4
+          // NON-MEDIS
+          biayaNonMedis: parseInt(this.removeDots(this.biayaNonMedis)), // 5
+          akomodasi: parseInt(this.removeDots(this.akomodasi)), // 6
+          catering: parseInt(this.removeDots(this.catering)), // 7
+          // LAIN-LAIN
+          lainLain: parseInt(this.removeDots(this.lainLain)), // 8
+          transport: parseInt(this.removeDots(this.transport)), // 9
+          konseling: parseInt(this.removeDots(this.konseling)), // 10
+          personalAssistant: parseInt(this.removeDots(this.personalAssistant)) // 11
+        });
+
+        this.$store.state.hitungSiklusForm++;
+      }
     },
     removeDots(numbers) {
       if (numbers) {
