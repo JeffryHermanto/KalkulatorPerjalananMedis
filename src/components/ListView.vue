@@ -64,10 +64,17 @@ export default {
       'durasiHari',
       'durasiMinggu',
       'durasiBulan',
+      'durasiTahun',
       'collections',
       'grandSummary'
     ]),
     durasi() {
+      if (this.durasiTahun)
+        return {
+          durasi: this.durasiTahun,
+          satuan: 'Tahun',
+          warna: 'tag is-info'
+        };
       if (this.durasiBulan)
         return {
           durasi: this.durasiBulan,
