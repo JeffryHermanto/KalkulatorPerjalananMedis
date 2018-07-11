@@ -106,6 +106,7 @@ export default {
       this.$store.state.durasiHari = tglPulang.diff(tglBerangkat, 'days');
       this.$store.state.durasiMinggu = tglPulang.diff(tglBerangkat, 'weeks');
       this.$store.state.durasiBulan = tglPulang.diff(tglBerangkat, 'months');
+      this.$store.state.durasiTahun = tglPulang.diff(tglBerangkat, 'years');
 
       if (
         this.$store.state.durasiHari < 0 ||

@@ -44,7 +44,8 @@ export default {
       'tanggalPulang',
       'durasiHari',
       'durasiMinggu',
-      'durasiBulan'
+      'durasiBulan',
+      'durasiTahun'
     ]),
     formatTanggalBerangkat() {
       return moment(this.tanggalBerangkat).format('DD MMM YYYY');
@@ -53,6 +54,12 @@ export default {
       return moment(this.tanggalPulang).format('DD MMM YYYY');
     },
     durasi() {
+      if (this.durasiTahun)
+        return {
+          durasi: this.durasiTahun,
+          satuan: 'Tahun',
+          warna: 'tag is-info'
+        };
       if (this.durasiBulan)
         return {
           durasi: this.durasiBulan,
