@@ -128,7 +128,7 @@ export default {
         };
       if (this.durasiBulan)
         return {
-          durasi: this.durasiBulan,
+          durasi: this.durasiBulan + 1,
           satuan: 'Bulan',
           warna: 'tag is-link'
         };
@@ -261,10 +261,10 @@ export default {
 
       let chunk = this.split(arr, 12);
 
-      doc.setFontSize(12);
+      doc.setFontSize(10);
 
-      let yAxis1 = 95;
-      let yAxis2 = 102;
+      let yAxis1 = 90;
+      let yAxis2 = 95;
       for (let i = 0; i < chunk.length; i++) {
         doc.text(15, yAxis1, `${this.durasi.satuan} ke-${i + 1}`);
         doc.text(
@@ -309,8 +309,8 @@ export default {
               this.collections[i].personalAssistant
           )},-`
         );
-        yAxis1 += 20;
-        yAxis2 += 20;
+        yAxis1 += 12.5;
+        yAxis2 += 12.5;
       }
 
       // END OF BODY
@@ -321,9 +321,9 @@ export default {
         this.grandSummary.toString()
       )},-`;
       doc.setFontSize(16);
-      doc.text(15, 245, labelGrandSummary);
+      doc.text(15, 252, labelGrandSummary);
       doc.setFontSize(30);
-      doc.text(15, 260, grandSummary);
+      doc.text(15, 266, grandSummary);
       doc.save('kemodijakarta.pdf');
     }
   }

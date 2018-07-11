@@ -62,7 +62,7 @@ export default {
         };
       if (this.durasiBulan)
         return {
-          durasi: this.durasiBulan,
+          durasi: this.durasiBulan + 1,
           satuan: 'Bulan',
           warna: 'tag is-link'
         };

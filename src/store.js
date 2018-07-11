@@ -50,7 +50,7 @@ export default new Vuex.Store({
       if (state.durasiTahun)
         return state.durasiTahun;
       if (state.durasiBulan)
-        return state.durasiBulan;
+        return state.durasiBulan + 1;
       if (state.durasiMinggu && state.durasiHari >= 7)
         return state.durasiMinggu + 1;
       if (state.durasiHari || state.durasiHari === 0)
@@ -60,6 +60,8 @@ export default new Vuex.Store({
       return state.hitungSiklusForm
     },
     satuanDurasi: state => {
+      if (state.durasiTahun)
+        return state.satuanDurasi = 'Tahun'
       if (state.durasiBulan)
         return state.satuanDurasi = 'Bulan'
       if (state.durasiMinggu && state.durasiHari >= 7)
