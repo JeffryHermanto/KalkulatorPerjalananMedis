@@ -57,7 +57,10 @@
               <!-- SAFARI USER -->
               <div class="help">
                 <i class="far fa-lightbulb"></i> &nbsp;Di
-                <em>browser Safari</em>, ketik tanggal dengan format YYYY/MM/DD
+                <em>macOS Safari</em>, ketik tanggal dengan format YYYY/MM/DD. Gunakan
+                <span id="chrome">
+                  <a href="https://www.google.com/chrome">Chrome</a>
+                </span> untuk pengalaman maksimal.
               </div>
               <br />
 
@@ -144,5 +147,11 @@ export default {
 .instruksi {
   margin-top: -3px;
   margin-bottom: -15px;
+}
+#chrome {
+  color: blue;
+}
+#chrome:hover {
+  color: green;
 }
 </style>

@@ -122,7 +122,7 @@ export default {
     durasi() {
       if (this.durasiTahun)
         return {
-          durasi: this.durasiTahun,
+          durasi: this.durasiTahun + 1,
           satuan: 'Tahun',
           warna: 'tag is-info'
         };

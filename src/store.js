@@ -48,7 +48,7 @@ export default new Vuex.Store({
     },
     siklusForm: state => {
       if (state.durasiTahun)
-        return state.durasiTahun;
+        return state.durasiTahun + 1;
       if (state.durasiBulan)
         return state.durasiBulan + 1;
       if (state.durasiMinggu && state.durasiHari >= 7)
