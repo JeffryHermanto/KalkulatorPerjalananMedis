@@ -1,10 +1,10 @@
 # Kalkulator Perjalanan Medis
 
-> Kalkulator Perjalanan Medis untuk situs www.kemodijakarta.com
+> Kalkulator Perjalanan Medis
 
 **[Visit Project](https://hopeful-wright-cc6f7a.netlify.com/)**
 
-![KPM](http://jhproject.id/images/portfolio/KalkulatorPerjalananMedis.png)
+![screenshot](screenshot.png)
 
 #### Jeffry Hermanto _jeffryhermanto@gmail.com_
 
